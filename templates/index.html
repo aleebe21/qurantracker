@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quran Tracker</title>
+    <style>
+        body { 
+            font-family: 'Arial', sans-serif; 
+            background-color: #f8f1e5; 
+            color: #4a4a4a; 
+            max-width: 600px; 
+            margin: auto; 
+            padding: 20px; 
+            text-align: center;
+        }
+        h1 { 
+            color: #006400; 
+            font-size: 2.5em; 
+            margin-bottom: 30px;
+        }
+        form { 
+            background: #ffffff; 
+            padding: 30px; 
+            border-radius: 15px; 
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+        input, select { 
+            width: 100%; 
+            padding: 12px; 
+            margin: 10px 0; 
+            border: 1px solid #006400; 
+            border-radius: 5px;
+        }
+        input[type="submit"] { 
+            background: #006400; 
+            color: white; 
+            border: none; 
+            cursor: pointer; 
+            font-size: 1.1em;
+            transition: background 0.3s;
+        }
+        input[type="submit"]:hover {
+            background: #004d00;
+        }
+        .islamic-pattern {
+            background-color: #006400;
+            height: 10px;
+            margin: 20px 0;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e8f5e9;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="islamic-pattern"></div>
+    <h1>Quran Tracker</h1>
+    <form method="post">
+        <select name="chapter" required>
+            <option value="">Select Chapter</option>
+            {% for number, name in chapters.items() %}
+                <option value="{{ number }}">{{ number }} - {{ name }}</option>
+            {% endfor %}
+        </select>
+        <input type="number" name="verse" placeholder="Verse" required>
+        <input type="number" name="days" placeholder="Days to complete" required>
+        <input type="submit" value="Calculate Progress">
+    </form>
+    {% if progress %}
+    <div class="result">
+        <p>{{ progress }}</p>
+        <p>{{ plan }}</p>
+    </div>
+    {% endif %}
+    <div class="islamic-pattern"></div>
+</body>
+</html>
